@@ -72,11 +72,30 @@ export default {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        // Add new animation for particles
+        particles: {
+          '0%': { transform: 'translateY(0) rotate(0deg)', opacity: '0' },
+          '50%': { opacity: '1' },
+          '100%': { transform: 'translateY(-1000%) rotate(720deg)', opacity: '0' },
+        },
+        // Add new animation for reveal text
+        revealText: {
+          '0%': { clipPath: 'inset(0 100% 0 0)' },
+          '100%': { clipPath: 'inset(0 0 0 0)' },
+        },
+        // Add new animation for shimmer effect
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "float": "float 5s ease-in-out infinite",
+        "particles": "particles 8s ease-in-out infinite",
+        "reveal-text": "revealText 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards",
+        "shimmer": "shimmer 2s linear infinite",
       },
     },
   },

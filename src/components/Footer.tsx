@@ -1,19 +1,44 @@
 
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { useEffect } from "react";
 
 const Footer = () => {
+  useEffect(() => {
+    // Create particle animation
+    const createParticle = () => {
+      const footer = document.getElementById('animated-footer');
+      if (!footer) return;
+      
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      
+      const size = Math.random() * 10 + 5;
+      const x = Math.random() * footer.offsetWidth;
+      const duration = Math.random() * 5 + 5;
+      const delay = Math.random() * 2;
+      
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${x}px`;
+      particle.style.bottom = '0';
+      particle.style.backgroundColor = `hsl(${Math.random() * 40 + 330}, ${Math.random() * 50 + 50}%, ${Math.random() * 50 + 50}%)`;
+      particle.style.setProperty('--duration', `${duration}s`);
+      particle.style.setProperty('--delay', `${delay}s`);
+      
+      footer.appendChild(particle);
+      
+      setTimeout(() => {
+        particle.remove();
+      }, duration * 1000);
+    };
+
+    // Create particles at intervals
+    const interval = setInterval(createParticle, 300);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <footer className="relative bg-primary text-primary-foreground">
-      <div className="boat">
-        <svg width="60" height="30" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 20L30 10L50 20L30 25L10 20Z" fill="#BA8C63" />
-          <path d="M30 10V2M30 2L34 5M30 2L26 5" stroke="white" strokeWidth="1.5" />
-          <path d="M30 10L30 25" stroke="#BA8C63" strokeWidth="1.5" />
-        </svg>
-      </div>
-      
-      <div className="water-wave"></div>
-      
+    <footer id="animated-footer" className="relative bg-primary text-primary-foreground overflow-hidden">
       <div className="container mx-auto px-4 pt-12 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div>

@@ -1,8 +1,9 @@
 
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Filter } from "lucide-react";
 
 interface Project {
   id: number;
@@ -12,6 +13,7 @@ interface Project {
   technologies: string[];
   liveUrl: string;
   githubUrl: string;
+  category: string;
 }
 
 const projects: Project[] = [
@@ -22,7 +24,8 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070",
     technologies: ["React", "Node.js", "MongoDB", "Stripe"],
     liveUrl: "https://example-ecommerce.com",
-    githubUrl: "https://github.com/username/ecommerce"
+    githubUrl: "https://github.com/username/ecommerce",
+    category: "Full Stack"
   },
   {
     id: 2,
@@ -31,7 +34,8 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?q=80&w=2032",
     technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
     liveUrl: "https://example-taskapp.com",
-    githubUrl: "https://github.com/username/taskapp"
+    githubUrl: "https://github.com/username/taskapp",
+    category: "Frontend"
   },
   {
     id: 3,
@@ -40,18 +44,43 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1580193769210-b8d1c049a7d9?q=80&w=2074",
     technologies: ["JavaScript", "Weather API", "Chart.js", "CSS3"],
     liveUrl: "https://example-weather.com",
-    githubUrl: "https://github.com/username/weather"
+    githubUrl: "https://github.com/username/weather",
+    category: "Frontend"
   }
 ];
 
 const Projects = () => {
+  const [filter, setFilter] = useState<string | null>(null);
+  
+  // Extract unique categories
+  const categories = ["All", ...Array.from(new Set(projects.map(project => project.category)))];
+  
+  // Filter projects based on selected category
+  const filteredProjects = filter && filter !== "All"
+    ? projects.filter(project => project.category === filter)
+    : projects;
+
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-16">Featured Projects</h2>
+        <h2 className="text-3xl font-bold text-center mb-8">Featured Projects</h2>
+        
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {categories.map((category) => (
+            <Button 
+              key={category}
+              variant={filter === category || (filter === null && category === "All") ? "default" : "outline"}
+              onClick={() => setFilter(category === "All" ? null : category)}
+              className="flex items-center gap-2"
+            >
+              {category === "All" && <Filter size={16} />}
+              {category}
+            </Button>
+          ))}
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <Card key={project.id} className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow">
               <div className="h-56 overflow-hidden">
                 <img 
@@ -61,6 +90,9 @@ const Projects = () => {
                 />
               </div>
               <CardHeader>
+                <div className="flex justify-between items-center mb-2">
+                  <Badge>{project.category}</Badge>
+                </div>
                 <CardTitle>{project.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">

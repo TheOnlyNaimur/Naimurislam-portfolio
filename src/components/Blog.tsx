@@ -1,8 +1,9 @@
 
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Filter } from "lucide-react";
 
 interface BlogPost {
   id: number;
@@ -49,11 +50,21 @@ const blogPosts: BlogPost[] = [
 ];
 
 const Blog = () => {
+  const [filter, setFilter] = useState<string | null>(null);
+  
+  // Extract unique categories
+  const categories = ["All", ...Array.from(new Set(blogPosts.map(post => post.category)))];
+  
+  // Filter blog posts based on selected category
+  const filteredPosts = filter && filter !== "All"
+    ? blogPosts.filter(post => post.category === filter)
+    : blogPosts;
+
   return (
     <section id="blog" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-12">
-          <h2 className="text-3xl font-bold">Latest Articles</h2>
+        <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold mb-4 md:mb-0">Latest Articles</h2>
           <Button variant="outline" asChild>
             <Link to="/blog" className="flex items-center gap-2">
               View All <ArrowRight size={16} />
@@ -61,14 +72,29 @@ const Blog = () => {
           </Button>
         </div>
         
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {categories.map((category) => (
+            <Button 
+              key={category}
+              variant={filter === category || (filter === null && category === "All") ? "default" : "outline"}
+              onClick={() => setFilter(category === "All" ? null : category)}
+              size="sm"
+              className="flex items-center gap-2"
+            >
+              {category === "All" && <Filter size={14} />}
+              {category}
+            </Button>
+          ))}
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {blogPosts.map((post) => (
-            <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+          {filteredPosts.map((post) => (
+            <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
                   src={post.image} 
                   alt={post.title} 
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <CardHeader className="p-4">
