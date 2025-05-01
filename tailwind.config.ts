@@ -88,6 +88,11 @@ export default {
           '0%': { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
         },
+        // New animation for bottom element
+        pulse: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -96,6 +101,7 @@ export default {
         "particles": "particles 8s ease-in-out infinite",
         "reveal-text": "revealText 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards",
         "shimmer": "shimmer 2s linear infinite",
+        "pulse": "pulse 3s ease-in-out infinite",
       },
     },
   },

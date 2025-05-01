@@ -15,9 +15,9 @@ const Hero = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="w-full md:w-1/2 space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold whitespace-nowrap overflow-hidden text-ellipsis">
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary to-[#FF0048] bg-clip-text text-transparent">
                 Naimur Islam
               </span>
             </h1>
