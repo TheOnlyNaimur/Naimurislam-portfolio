@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Filter } from "lucide-react";
+import { ExternalLink, Github, Filter, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Project {
   id: number;
@@ -63,7 +64,14 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Featured Projects</h2>
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold">Featured Projects</h2>
+          <Link to="/projects">
+            <Button variant="outline" className="gap-2">
+              View All Projects <ArrowRight size={16} />
+            </Button>
+          </Link>
+        </div>
         
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {categories.map((category) => (
@@ -117,6 +125,14 @@ const Projects = () => {
               </CardFooter>
             </Card>
           ))}
+        </div>
+        
+        <div className="text-center mt-10">
+          <Link to="/projects">
+            <Button className="gap-2">
+              View All Projects <ArrowRight size={16} />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

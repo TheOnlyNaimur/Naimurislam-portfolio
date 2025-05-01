@@ -5,38 +5,40 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 342 100% 18%;
+    /* Light mode - blue/white theme */
+    --background: 220 100% 98%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 342 100% 18%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 342 100% 18%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 338 88% 48%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 342 100% 95%;
-    --secondary-foreground: 338 88% 40%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 342 100% 96%;
-    --muted-foreground: 342 100% 40%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 338 88% 96%;
-    --accent-foreground: 338 88% 40%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 342 100% 90%;
-    --input: 342 100% 90%;
-    --ring: 338 88% 48%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
 
     --radius: 0.5rem;
   }
 
   .dark {
+    /* Dark mode - pink/red theme */
     --background: 240 10% 4%;
     --foreground: 0 0% 98%;
 
@@ -46,7 +48,7 @@
     --popover: 240 10% 4%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 338 88% 56%;
+    --primary: 331 79% 46%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 240 10% 10%;
@@ -63,7 +65,7 @@
 
     --border: 240 10% 15%;
     --input: 240 10% 10%;
-    --ring: 338 88% 56%;
+    --ring: 331 79% 46%;
   }
 }
 
@@ -83,7 +85,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-33.33%);
   }
 }
 
@@ -181,4 +183,17 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Add shadow effect to cards */
+.card-shadow {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-shadow:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-5px);
 }

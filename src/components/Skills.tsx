@@ -31,16 +31,20 @@ const Skills = () => {
     { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg", color: "bg-yellow-100" },
   ];
 
+  // Create a triple set of skills for smoother infinite scrolling
+  const tripleSkillsRow1 = [...skillsRow1, ...skillsRow1, ...skillsRow1];
+  const tripleSkillsRow2 = [...skillsRow2, ...skillsRow2, ...skillsRow2];
+
   return (
-    <section className="py-20 overflow-hidden">
+    <section className="py-20 overflow-hidden" id="skills">
       <div className="container mx-auto px-4 mb-10">
         <h2 className="text-3xl font-bold text-center mb-16">My Skills</h2>
       </div>
       
       {/* First row of skills - scrolling right to left */}
       <div className="relative flex overflow-x-hidden">
-        <div className="flex space-x-8 animate-infinite-scroll py-4 infinite-scroll">
-          {[...skillsRow1, ...skillsRow1].map((skill, index) => (
+        <div className="flex space-x-8 py-4" style={{ animation: 'scroll 40s linear infinite' }}>
+          {tripleSkillsRow1.map((skill, index) => (
             <div
               key={`${skill.name}-${index}`}
               className={`flex flex-col items-center justify-center w-36 h-36 rounded-xl shadow-md ${skill.color} skill-item transition-transform duration-300 p-4`}
@@ -54,8 +58,8 @@ const Skills = () => {
       
       {/* Second row of skills - scrolling left to right */}
       <div className="relative flex overflow-x-hidden mt-8">
-        <div className="flex space-x-8 py-4 infinite-scroll" style={{ animation: 'scroll 30s linear infinite reverse' }}>
-          {[...skillsRow2, ...skillsRow2].map((skill, index) => (
+        <div className="flex space-x-8 py-4" style={{ animation: 'scroll 40s linear infinite reverse' }}>
+          {tripleSkillsRow2.map((skill, index) => (
             <div
               key={`${skill.name}-${index}`}
               className={`flex flex-col items-center justify-center w-36 h-36 rounded-xl shadow-md ${skill.color} skill-item transition-transform duration-300 p-4`}
