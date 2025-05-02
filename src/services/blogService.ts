@@ -77,8 +77,8 @@ export async function getBlogCategories(): Promise<string[]> {
       return ['All', 'React', 'TypeScript'];
     }
     
-    // Extract unique categories
-    const categories = data.map(item => item.category);
+    // Extract unique categories and ensure they are strings
+    const categories = data.map(item => item.category as string);
     return ['All', ...Array.from(new Set(categories))];
   } catch (err) {
     console.error('Error in getBlogCategories:', err);

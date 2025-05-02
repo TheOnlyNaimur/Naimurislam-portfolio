@@ -101,8 +101,8 @@ export async function getProjectCategories(): Promise<string[]> {
       return ['All', 'Web Development', 'Full Stack'];
     }
     
-    // Extract unique categories
-    const categories = data.map(item => item.category);
+    // Extract unique categories and ensure they are strings
+    const categories = data.map(item => item.category as string);
     return ['All', ...Array.from(new Set(categories))];
   } catch (err) {
     console.error('Error in getProjectCategories:', err);
@@ -121,8 +121,8 @@ export async function getProjectTechnologies(): Promise<string[]> {
       return ['All', 'React', 'TypeScript', 'Next.js', 'Tailwind CSS'];
     }
     
-    // Extract and flatten all technologies
-    const technologies = data.flatMap(item => item.technologies);
+    // Extract and flatten all technologies, ensuring they are strings
+    const technologies = data.flatMap(item => (item.technologies as string[]));
     return ['All', ...Array.from(new Set(technologies))];
   } catch (err) {
     console.error('Error in getProjectTechnologies:', err);
