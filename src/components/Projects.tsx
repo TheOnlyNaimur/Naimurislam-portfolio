@@ -5,56 +5,31 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Filter, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  liveUrl: string;
-  githubUrl: string;
-  category: string;
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "E-Commerce Platform",
-    description: "A full-featured e-commerce platform with product management, cart functionality, and payment processing.",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-    liveUrl: "https://example-ecommerce.com",
-    githubUrl: "https://github.com/username/ecommerce",
-    category: "Full Stack"
-  },
-  {
-    id: 2,
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates and team functionality.",
-    image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?q=80&w=2032",
-    technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
-    liveUrl: "https://example-taskapp.com",
-    githubUrl: "https://github.com/username/taskapp",
-    category: "Frontend"
-  },
-  {
-    id: 3,
-    title: "Weather Dashboard",
-    description: "An interactive weather dashboard that displays forecast data with beautiful visualizations.",
-    image: "https://images.unsplash.com/photo-1580193769210-b8d1c049a7d9?q=80&w=2074",
-    technologies: ["JavaScript", "Weather API", "Chart.js", "CSS3"],
-    liveUrl: "https://example-weather.com",
-    githubUrl: "https://github.com/username/weather",
-    category: "Frontend"
-  }
-];
+import { useQuery } from "@tanstack/react-query";
+import { Project } from "@/lib/supabase";
+import { getFeaturedProjects, getProjectCategories } from "@/services/projectService";
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
 
 const Projects = () => {
   const [filter, setFilter] = useState<string | null>(null);
   
-  // Extract unique categories
-  const categories = ["All", ...Array.from(new Set(projects.map(project => project.category)))];
+  // Fetch featured projects
+  const { data: projects = [] } = useQuery({
+    queryKey: ['featuredProjects'],
+    queryFn: getFeaturedProjects,
+  });
+  
+  // Fetch categories
+  const { data: categories = ['All'] } = useQuery({
+    queryKey: ['projectCategories'],
+    queryFn: getProjectCategories,
+  });
   
   // Filter projects based on selected category
   const filteredProjects = filter && filter !== "All"
@@ -87,45 +62,52 @@ const Projects = () => {
           ))}
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <Card key={project.id} className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow">
-              <div className="h-56 overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <CardHeader>
-                <div className="flex justify-between items-center mb-2">
-                  <Badge>{project.category}</Badge>
-                </div>
-                <CardTitle>{project.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <CardDescription className="mb-4">{project.description}</CardDescription>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, index) => (
-                    <Badge key={index} variant="outline">{tech}</Badge>
-                  ))}
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button variant="outline" size="sm" asChild>
-                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                    <Github size={16} /> Code
-                  </a>
-                </Button>
-                <Button size="sm" asChild>
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                    Live Demo <ExternalLink size={16} />
-                  </a>
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+        {/* Featured Projects Carousel */}
+        <Carousel className="w-full px-12 mb-10">
+          <CarouselContent>
+            {filteredProjects.map((project) => (
+              <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-1/3">
+                <Card className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow">
+                  <div className="h-56 overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <CardHeader>
+                    <div className="flex justify-between items-center mb-2">
+                      <Badge>{project.category}</Badge>
+                    </div>
+                    <CardTitle>{project.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <CardDescription className="mb-4">{project.description}</CardDescription>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <Badge key={index} variant="outline">{tech}</Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex justify-between">
+                    <Button variant="outline" size="sm" asChild>
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                        <Github size={16} /> Code
+                      </a>
+                    </Button>
+                    <Button size="sm" asChild>
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                        Live Demo <ExternalLink size={16} />
+                      </a>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="-left-2 md:-left-4" />
+          <CarouselNext className="-right-2 md:-right-4" />
+        </Carousel>
         
         <div className="text-center mt-10">
           <Link to="/projects">

@@ -1,59 +1,27 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Filter } from "lucide-react";
-
-interface BlogPost {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  image: string;
-  category: string;
-}
-
-const blogPosts: BlogPost[] = [
-  {
-    id: 1,
-    title: "Building Responsive UIs with React and Tailwind",
-    description: "Explore best practices for creating beautiful, responsive user interfaces using React and Tailwind CSS.",
-    date: "May 1, 2025",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070",
-    category: "Frontend",
-  },
-  {
-    id: 2,
-    title: "Getting Started with TypeScript in 2025",
-    description: "A comprehensive guide for developers looking to adopt TypeScript in their projects.",
-    date: "April 22, 2025",
-    image: "https://images.unsplash.com/photo-1564865878688-9a244444042a?q=80&w=2070",
-    category: "TypeScript",
-  },
-  {
-    id: 3,
-    title: "Mastering Backend Development with Node.js",
-    description: "Learn how to build scalable and efficient backend services using Node.js and Express.",
-    date: "April 15, 2025",
-    image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=80&w=2074",
-    category: "Backend",
-  },
-  {
-    id: 4,
-    title: "Introduction to Docker for Web Developers",
-    description: "Simplify your development workflow and deployment process with Docker containers.",
-    date: "April 8, 2025",
-    image: "https://images.unsplash.com/photo-1605745341112-85968b19335b?q=80&w=2071",
-    category: "DevOps",
-  }
-];
+import { BlogPost } from "@/lib/supabase";
+import { getFeaturedBlogPosts, getBlogCategories } from "@/services/blogService";
+import { useQuery } from "@tanstack/react-query";
 
 const Blog = () => {
   const [filter, setFilter] = useState<string | null>(null);
   
-  // Extract unique categories
-  const categories = ["All", ...Array.from(new Set(blogPosts.map(post => post.category)))];
+  // Fetch blog posts
+  const { data: blogPosts = [] } = useQuery({
+    queryKey: ['blogPosts'],
+    queryFn: () => getFeaturedBlogPosts(4),
+  });
+  
+  // Fetch categories
+  const { data: categories = ['All'] } = useQuery({
+    queryKey: ['blogCategories'],
+    queryFn: getBlogCategories,
+  });
   
   // Filter blog posts based on selected category
   const filteredPosts = filter && filter !== "All"
