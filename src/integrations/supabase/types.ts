@@ -9,7 +9,129 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      blog_posts: {
+        Row: {
+          category: string
+          content: string | null
+          created_at: string
+          date: string
+          description: string
+          id: number
+          image: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          content?: string | null
+          created_at?: string
+          date: string
+          description: string
+          id?: number
+          image: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          content?: string | null
+          created_at?: string
+          date?: string
+          description?: string
+          id?: number
+          image?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      project_technologies: {
+        Row: {
+          project_id: number
+          technology_id: number
+        }
+        Insert: {
+          project_id: number
+          technology_id: number
+        }
+        Update: {
+          project_id?: number
+          technology_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_technologies_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "project_technologies_technology_id_fkey"
+            columns: ["technology_id"]
+            isOneToOne: false
+            referencedRelation: "technologies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          category: string
+          created_at: string
+          description: string
+          featured: boolean
+          githuburl: string
+          id: number
+          image: string
+          liveurl: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description: string
+          featured?: boolean
+          githuburl: string
+          id?: number
+          image: string
+          liveurl: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string
+          featured?: boolean
+          githuburl?: string
+          id?: number
+          image?: string
+          liveurl?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      technologies: {
+        Row: {
+          created_at: string
+          id: number
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

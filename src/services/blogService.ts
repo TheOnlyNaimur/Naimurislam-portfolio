@@ -1,7 +1,8 @@
 
-import { supabase, BlogPost } from '@/lib/supabase';
+import { supabase } from '@/integrations/supabase/client';
+import { BlogPost } from '@/lib/supabase';
 
-// Mock data to use when Supabase is not connected
+// Mock data to use as fallback if queries fail
 const mockBlogPosts: BlogPost[] = [
   {
     id: 1,
@@ -25,13 +26,13 @@ const mockBlogPosts: BlogPost[] = [
 
 export async function getBlogPosts(category: string | null = null): Promise<BlogPost[]> {
   try {
-    let query = supabase.from('blog_posts').select('*').order('created_at', { ascending: false });
+    let query = supabase.from('blog_posts').select('*');
     
     if (category && category !== 'All') {
       query = query.eq('category', category);
     }
     
-    const { data, error } = await query;
+    const { data, error } = await query.order('created_at', { ascending: false });
     
     if (error) {
       console.error('Error fetching blog posts:', error);
@@ -69,8 +70,7 @@ export async function getBlogCategories(): Promise<string[]> {
   try {
     const { data, error } = await supabase
       .from('blog_posts')
-      .select('category')
-      .order('category');
+      .select('category');
     
     if (error) {
       console.error('Error fetching blog categories:', error);
@@ -78,7 +78,7 @@ export async function getBlogCategories(): Promise<string[]> {
     }
     
     // Extract unique categories and ensure they are strings
-    const categories = data.map(item => item.category as string);
+    const categories = data.map(item => item.category);
     const uniqueCategories = Array.from(new Set<string>(categories));
     return ['All', ...uniqueCategories];
   } catch (err) {
