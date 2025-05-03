@@ -20,10 +20,12 @@ const Projects = () => {
   const [filter, setFilter] = useState<string | null>(null);
   
   // Fetch featured projects
-  const { data: projects = [] } = useQuery({
+  const { data: projects = [], isLoading, error } = useQuery({
     queryKey: ['featuredProjects'],
     queryFn: getFeaturedProjects,
   });
+  
+  console.log("Home page projects:", projects);
   
   // Fetch categories
   const { data: categories = ['All'] } = useQuery({
@@ -62,52 +64,59 @@ const Projects = () => {
           ))}
         </div>
         
-        {/* Featured Projects Carousel */}
-        <Carousel className="w-full px-12 mb-10">
-          <CarouselContent>
-            {filteredProjects.map((project) => (
-              <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-1/3">
-                <Card className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow">
-                  <div className="h-56 overflow-hidden">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                  <CardHeader>
-                    <div className="flex justify-between items-center mb-2">
-                      <Badge>{project.category}</Badge>
+        {isLoading ? (
+          <div className="text-center py-10">Loading projects...</div>
+        ) : error ? (
+          <div className="text-center py-10 text-red-500">Error loading projects</div>
+        ) : filteredProjects.length === 0 ? (
+          <div className="text-center py-10">No projects found. Try setting the featured flag to true for projects you want to show here.</div>
+        ) : (
+          <Carousel className="w-full px-12 mb-10">
+            <CarouselContent>
+              {filteredProjects.map((project) => (
+                <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-1/3">
+                  <Card className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow">
+                    <div className="h-56 overflow-hidden">
+                      <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      />
                     </div>
-                    <CardTitle>{project.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <CardDescription className="mb-4">{project.description}</CardDescription>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, index) => (
-                        <Badge key={index} variant="outline">{tech}</Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <Button variant="outline" size="sm" asChild>
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                        <Github size={16} /> Code
-                      </a>
-                    </Button>
-                    <Button size="sm" asChild>
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                        Live Demo <ExternalLink size={16} />
-                      </a>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="-left-2 md:-left-4" />
-          <CarouselNext className="-right-2 md:-right-4" />
-        </Carousel>
+                    <CardHeader>
+                      <div className="flex justify-between items-center mb-2">
+                        <Badge>{project.category}</Badge>
+                      </div>
+                      <CardTitle>{project.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <CardDescription className="mb-4">{project.description}</CardDescription>
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech, index) => (
+                          <Badge key={index} variant="outline">{tech}</Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                    <CardFooter className="flex justify-between">
+                      <Button variant="outline" size="sm" asChild>
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                          <Github size={16} /> Code
+                        </a>
+                      </Button>
+                      <Button size="sm" asChild>
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                          Live Demo <ExternalLink size={16} />
+                        </a>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="-left-2 md:-left-4" />
+            <CarouselNext className="-right-2 md:-right-4" />
+          </Carousel>
+        )}
         
         <div className="text-center mt-10">
           <Link to="/projects">

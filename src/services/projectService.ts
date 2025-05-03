@@ -114,7 +114,7 @@ export async function getFeaturedProjects(): Promise<Project[]> {
     const { data: projectsData, error: projectsError } = await supabase
       .from('projects')
       .select('*')
-      .eq('featured', true);
+      .order('created_at', { ascending: false });
     
     if (projectsError) {
       console.error('Error fetching featured projects:', projectsError);
@@ -144,31 +144,33 @@ export async function getFeaturedProjects(): Promise<Project[]> {
     }
     
     // Build projects with their technologies
-    const projects = projectsData.map(project => {
-      // Find technology relationships for this project
-      const techRelationships = relationshipsData.filter(
-        rel => rel.project_id === project.id
-      );
-      
-      // Get technology names from relationships
-      const technologies = techRelationships.map(rel => {
-        const tech = technologiesData.find(t => t.id === rel.technology_id);
-        return tech ? tech.name : '';
-      }).filter(Boolean);
-      
-      return {
-        id: project.id,
-        title: project.title,
-        description: project.description,
-        image: project.image,
-        liveUrl: project.liveurl, // Note: field name in database is lowercase
-        githubUrl: project.githuburl, // Note: field name in database is lowercase
-        featured: project.featured,
-        category: project.category,
-        created_at: project.created_at,
-        technologies
-      };
-    });
+    const projects = projectsData
+      .filter(project => project.featured) // Make sure we only get featured projects
+      .map(project => {
+        // Find technology relationships for this project
+        const techRelationships = relationshipsData.filter(
+          rel => rel.project_id === project.id
+        );
+        
+        // Get technology names from relationships
+        const technologies = techRelationships.map(rel => {
+          const tech = technologiesData.find(t => t.id === rel.technology_id);
+          return tech ? tech.name : '';
+        }).filter(Boolean);
+        
+        return {
+          id: project.id,
+          title: project.title,
+          description: project.description,
+          image: project.image,
+          liveUrl: project.liveurl, // Note: field name in database is lowercase
+          githubUrl: project.githuburl, // Note: field name in database is lowercase
+          featured: project.featured,
+          category: project.category,
+          created_at: project.created_at,
+          technologies
+        };
+      });
     
     return projects;
   } catch (err) {
