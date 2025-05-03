@@ -110,6 +110,7 @@ export async function getProjects(filters: { category?: string; tech?: string } 
 
 export async function getFeaturedProjects(): Promise<Project[]> {
   try {
+    console.log('Fetching featured projects...');
     // First fetch featured projects from Supabase
     const { data: projectsData, error: projectsError } = await supabase
       .from('projects')
@@ -122,13 +123,16 @@ export async function getFeaturedProjects(): Promise<Project[]> {
       return mockProjects.filter(p => p.featured);
     }
     
-    // Then fetch project-technologies relationships
-    const projectIds = projectsData.map(p => p.id);
+    console.log('Featured projects data:', projectsData);
     
-    // If no projects found, return empty array
-    if (projectIds.length === 0) {
+    // If no featured projects found, return empty array
+    if (projectsData.length === 0) {
+      console.log('No featured projects found');
       return [];
     }
+    
+    // Then fetch project-technologies relationships
+    const projectIds = projectsData.map(p => p.id);
     
     const { data: relationshipsData, error: relationshipsError } = await supabase
       .from('project_technologies')
@@ -177,6 +181,7 @@ export async function getFeaturedProjects(): Promise<Project[]> {
       };
     });
     
+    console.log('Processed featured projects:', projects);
     return projects;
   } catch (err) {
     console.error('Error in getFeaturedProjects:', err);

@@ -14,6 +14,7 @@ import {
   CarouselNext, 
   CarouselPrevious 
 } from "@/components/ui/carousel";
+import { toast } from "sonner";
 
 const Projects = () => {
   const [filter, setFilter] = useState<string | null>(null);
@@ -71,6 +72,12 @@ const Projects = () => {
           <div className="text-center py-10">
             <p className="mb-4">No featured projects found.</p>
             <p className="text-muted-foreground">To display projects here, make sure to set the "featured" flag to true for your projects in the database.</p>
+            <Button 
+              className="mt-4"
+              onClick={() => toast.info("Set the 'featured' column to true in the Supabase dashboard for projects you want to display here.")}
+            >
+              How to fix this?
+            </Button>
           </div>
         ) : (
           <Carousel className="w-full px-12 mb-10">
