@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { BlogPost } from '@/lib/supabase';
 
@@ -84,5 +83,29 @@ export async function getBlogCategories(): Promise<string[]> {
   } catch (err) {
     console.error('Error in getBlogCategories:', err);
     return ['All', 'React', 'TypeScript'];
+  }
+}
+
+export async function getBlogPostById(id: number): Promise<BlogPost | null> {
+  try {
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .select('*')
+      .eq('id', id)
+      .single();
+    
+    if (error) {
+      console.error('Error fetching blog post by ID:', error);
+      // Return the mock post with matching ID if there's an error
+      const mockPost = mockBlogPosts.find(post => post.id === id);
+      return mockPost || null;
+    }
+    
+    return data;
+  } catch (err) {
+    console.error('Error in getBlogPostById:', err);
+    // Return the mock post with matching ID if there's an exception
+    const mockPost = mockBlogPosts.find(post => post.id === id);
+    return mockPost || null;
   }
 }

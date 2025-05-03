@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Filter, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Project } from "@/lib/supabase";
 import { getFeaturedProjects, getProjectCategories } from "@/services/projectService";
 import { 
   Carousel, 
@@ -69,7 +68,10 @@ const Projects = () => {
         ) : error ? (
           <div className="text-center py-10 text-red-500">Error loading projects</div>
         ) : filteredProjects.length === 0 ? (
-          <div className="text-center py-10">No projects found. Try setting the featured flag to true for projects you want to show here.</div>
+          <div className="text-center py-10">
+            <p className="mb-4">No featured projects found.</p>
+            <p className="text-muted-foreground">To display projects here, make sure to set the "featured" flag to true for your projects in the database.</p>
+          </div>
         ) : (
           <Carousel className="w-full px-12 mb-10">
             <CarouselContent>
