@@ -10,6 +10,7 @@ import BlogPostPage from "./pages/BlogPostPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import ResumePage from "./pages/ResumePage";
 import NotFound from "./pages/NotFound";
 
 // Create a query client with better error handling
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/resume" element={<ResumePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

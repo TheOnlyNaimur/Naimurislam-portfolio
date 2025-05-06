@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ModeToggle } from "./ModeToggle";
-import { Menu, X } from "lucide-react";
+import { Menu, X, FileText } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,6 +46,10 @@ const Navbar = () => {
           </Link>
           <Link to="/blog" className="nav-link font-medium text-foreground hover:text-primary transition-colors">
             Blog
+          </Link>
+          <Link to="/resume" className="nav-link font-medium text-foreground hover:text-primary transition-colors flex items-center">
+            <FileText size={16} className="mr-1" />
+            Resume
           </Link>
           <Link to="/contact" className="nav-link font-medium text-foreground hover:text-primary transition-colors">
             Contact
@@ -95,6 +99,14 @@ const Navbar = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             Blog
+          </Link>
+          <Link
+            to="/resume"
+            className="font-medium flex items-center"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <FileText size={16} className="mr-1" />
+            Resume
           </Link>
           <Link
             to="/contact"

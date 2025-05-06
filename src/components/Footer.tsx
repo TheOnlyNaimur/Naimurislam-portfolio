@@ -1,5 +1,6 @@
 
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, FileText } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -34,11 +35,17 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white/80">Home</a></li>
-              <li><a href="#about" className="hover:text-white/80">About</a></li>
-              <li><a href="#projects" className="hover:text-white/80">Projects</a></li>
-              <li><a href="#blog" className="hover:text-white/80">Blog</a></li>
-              <li><a href="#contact" className="hover:text-white/80">Contact</a></li>
+              <li><Link to="/" className="hover:text-white/80">Home</Link></li>
+              <li><Link to="/about" className="hover:text-white/80">About</Link></li>
+              <li><Link to="/projects" className="hover:text-white/80">Projects</Link></li>
+              <li><Link to="/blog" className="hover:text-white/80">Blog</Link></li>
+              <li>
+                <Link to="/resume" className="hover:text-white/80 flex items-center">
+                  <FileText size={16} className="mr-1" />
+                  Resume/CV
+                </Link>
+              </li>
+              <li><Link to="/contact" className="hover:text-white/80">Contact</Link></li>
             </ul>
           </div>
           
