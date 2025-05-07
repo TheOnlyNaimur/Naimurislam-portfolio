@@ -16,7 +16,7 @@ const ResumePage = () => {
     setTimeout(() => {
       // In a real app, this would be a link to an actual PDF file
       const link = document.createElement("a");
-      link.href = "https://example.com/resume.pdf"; // Replace with actual PDF URL
+      link.href = ""; // Replace with actual PDF URL
       link.download = "naimur-islam-resume.pdf";
       document.body.appendChild(link);
       link.click();
@@ -35,7 +35,7 @@ const ResumePage = () => {
             <h1 className="text-4xl font-bold mb-2">Naimur Islam</h1>
             <p className="text-xl text-muted-foreground mb-4">Full Stack Developer</p>
           </div>
-          <Button 
+          {/* <Button 
             onClick={handleDownload} 
             disabled={isDownloading}
             className="mt-4 md:mt-0"
@@ -46,7 +46,7 @@ const ResumePage = () => {
                 Download Resume
               </>
             )}
-          </Button>
+          </Button> */}
         </div>
         
         <Separator className="my-8" />
@@ -61,10 +61,10 @@ const ResumePage = () => {
                 Contact
               </h2>
               <div className="space-y-2">
-                <p><strong>Email:</strong> naimur@example.com</p>
-                <p><strong>Phone:</strong> +123 456 7890</p>
-                <p><strong>Location:</strong> City, Country</p>
-                <p><strong>Website:</strong> naimur.example.com</p>
+                <p><strong>Email:</strong> naimurislam707.com</p>
+                <p><strong>Phone:</strong> +8801712188292</p>
+                <p><strong>Location:</strong> Dhaka, Bangladesh</p>
+                <p><strong>Website:</strong> naimurislam.com</p>
               </div>
             </div>
             
@@ -72,12 +72,12 @@ const ResumePage = () => {
               <h2 className="text-2xl font-bold mb-4">Education</h2>
               <div className="space-y-4">
                 <div>
-                  <p className="font-semibold">Master of Science in Computer Science</p>
-                  <p className="text-muted-foreground">University Name, 2018-2020</p>
+                  <p className="font-semibold">Bachelor of Science in Computer Science</p>
+                  <p className="text-muted-foreground">Brac University, 2021-Current</p>
                 </div>
                 <div>
-                  <p className="font-semibold">Bachelor of Science in Computer Science</p>
-                  <p className="text-muted-foreground">University Name, 2014-2018</p>
+                  <p className="font-semibold">Higher Secondary Certificate</p>
+                  <p className="text-muted-foreground">MUBC, 2018-2020</p>
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@ const ResumePage = () => {
             <div className="mb-10">
               <h2 className="text-2xl font-bold mb-4">Skills</h2>
               <div className="flex flex-wrap gap-2">
-                {['React', 'Node.js', 'TypeScript', 'JavaScript', 'HTML/CSS', 'Tailwind CSS', 'Next.js', 'MongoDB', 'PostgreSQL', 'Git', 'AWS'].map((skill) => (
+                {['React', 'Node.js', 'TypeScript', 'JavaScript', 'HTML/CSS', 'Next.js', 'PHP', 'MongoDB', 'MySQL', 'Git', 'Figma','Wordpress','Java','Python'].map((skill) => (
                   <span key={skill} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">
                     {skill}
                   </span>
@@ -99,22 +99,23 @@ const ResumePage = () => {
             <div className="mb-10">
               <h2 className="text-2xl font-bold mb-6">Experience</h2>
               <div className="space-y-6">
+
                 <div>
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="font-semibold text-lg">Senior Full Stack Developer</p>
-                      <p className="text-muted-foreground">Tech Company Inc.</p>
+                      <p className="font-semibold text-lg">HRM & Development Team</p>
+                      <p className="text-muted-foreground">NonAcademy</p>
                     </div>
-                    <p className="text-muted-foreground">2022 - Present</p>
-                  </div>
-                  <ul className="list-disc list-inside mt-2 text-muted-foreground">
-                    <li>Led development of enterprise-level applications using React and Node.js</li>
-                    <li>Implemented CI/CD pipelines using GitHub Actions</li>
-                    <li>Mentored junior developers and conducted code reviews</li>
-                  </ul>
+                    <p className="text-muted-foreground">2023</p>
+                    </div>
+                    <ul className="list-disc list-inside mt-2 text-muted-foreground">
+                      <li>Designed and implemented HR management features to streamline employee workflows</li>
+                      <li>Developed tools for performance tracking and employee engagement</li>
+                      <li>Collaborated with stakeholders to ensure alignment with organizational goals</li>
+                    </ul>                  
                 </div>
                 
-                <div>
+                {/* <div>
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="font-semibold text-lg">Full Stack Developer</p>
@@ -127,9 +128,9 @@ const ResumePage = () => {
                     <li>Optimized application performance and implemented SEO best practices</li>
                     <li>Collaborated with design teams to implement UI/UX improvements</li>
                   </ul>
-                </div>
+                </div> */}
                 
-                <div>
+                {/* <div>
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="font-semibold text-lg">Junior Developer</p>
@@ -142,7 +143,9 @@ const ResumePage = () => {
                     <li>Participated in agile development processes and sprint planning</li>
                     <li>Created and maintained API documentation</li>
                   </ul>
-                </div>
+                </div> */}
+
+
               </div>
             </div>
             
@@ -150,21 +153,21 @@ const ResumePage = () => {
               <h2 className="text-2xl font-bold mb-6">Projects</h2>
               <div className="space-y-6">
                 <div>
-                  <p className="font-semibold text-lg">E-commerce Platform</p>
-                  <p className="text-muted-foreground mb-2">A full-stack e-commerce solution with payment integration</p>
-                  <p className="text-sm">Technologies: React, Node.js, MongoDB, Stripe</p>
+                  <p className="font-semibold text-lg">Car Market Place Platform</p>
+                  <p className="text-muted-foreground mb-2">A full MERN-stack based solution with Authentication integration</p>
+                  <p className="text-sm">Technologies: React, Node.js, MongoDB, Express.js</p>
                 </div>
                 
                 <div>
-                  <p className="font-semibold text-lg">Task Management Application</p>
-                  <p className="text-muted-foreground mb-2">A collaborative task management tool with real-time updates</p>
-                  <p className="text-sm">Technologies: React, Firebase, Material UI</p>
+                  <p className="font-semibold text-lg">Eco-Bank</p>
+                  <p className="text-muted-foreground mb-2">A PHP and Apache stack based platform</p>
+                  <p className="text-sm">Technologies: PHP, Apache, Material UI</p>
                 </div>
                 
                 <div>
-                  <p className="font-semibold text-lg">Personal Blog</p>
-                  <p className="text-muted-foreground mb-2">A responsive blog platform with CMS integration</p>
-                  <p className="text-sm">Technologies: Next.js, Tailwind CSS, Sanity.io</p>
+                  <p className="font-semibold text-lg">Missing Person Finder</p>
+                  <p className="text-muted-foreground mb-2">A Decentralized application intigrated with Metamask</p>
+                  <p className="text-sm">Technologies: Solidity, Web3.js, Truffle, Ganache</p>
                 </div>
               </div>
             </div>

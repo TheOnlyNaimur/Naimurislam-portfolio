@@ -29,7 +29,7 @@ const BlogPage = () => {
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold mb-2">Blog</h1>
           <p className="text-lg text-muted-foreground mb-8">
-            Thoughts, tutorials, and insights on web development
+           Checkout my Thoughts, tutorials, and insights on Software and Web development
           </p>
           
           <div className="flex flex-wrap gap-2 mb-10">

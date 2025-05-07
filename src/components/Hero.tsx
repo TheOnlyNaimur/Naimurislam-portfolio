@@ -43,11 +43,13 @@ const Hero = () => {
           
           <div className="w-full md:w-1/2 flex justify-center">
             <div className="relative">
-              <div className="w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-lg animate-float">
+              <div className="w-73 h-73 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-lg animate-float">
                 <img 
-                  src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080" 
+                  src="../../public/Naimur img.png" 
                   alt="Naimur Islam" 
                   className="w-full h-full object-cover"
+                  style={{ filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 1))" }}
+                
                 />
               </div>
               <div className="absolute -z-10 w-72 h-72 md:w-80 md:h-80 rounded-full bg-primary/20 blur-2xl"></div>

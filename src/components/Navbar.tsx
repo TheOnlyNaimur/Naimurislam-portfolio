@@ -30,6 +30,8 @@ const Navbar = () => {
         <Link to="/" className="flex items-center space-x-2">
           <span className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
             <span className="text-3xl">N</span>aimur
+            <span className="text-3xl"> </span>
+            <span className="text-3xl">I</span>slam
           </span>
         </Link>
 

@@ -54,7 +54,7 @@ const BlogPostPage = () => {
                 ) : (
                   <>
                     <p className="mb-4">{post.description}</p>
-                    <p className="mb-4">
+                    {/* <p className="mb-4">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros
                       elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
                       commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet.
@@ -73,7 +73,7 @@ const BlogPostPage = () => {
                     <p>
                       Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare,
                       eros dolor interdum nulla, ut commodo diam libero vitae erat.
-                    </p>
+                    </p> */}
                   </>
                 )}
               </div>

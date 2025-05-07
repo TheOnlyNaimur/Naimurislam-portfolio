@@ -25,23 +25,51 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Message sent successfully!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
-    });
-    setIsSubmitting(false);
+  
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbxX9bQev0TW3k07XgcU6Q-d8qmM1Zy6oyJBWmj8afYnUHGMUHUjf7hnrWf0x9_5ZAbfmQ/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+          }).toString(),
+        }
+      );
+  
+      const result = await response.json();
+  
+      if (result.result === "success") {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        throw new Error(result.error || "Submission failed");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.message || "Something went wrong.",
+        variant: "destructive",
+      });
+      console.error("Submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+  
 
   return (
     <section id="contact" className="py-20 bg-secondary/30">
@@ -62,8 +90,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="font-medium">Email</p>
-                  <a href="mailto:naimur@example.com" className="text-muted-foreground hover:text-primary">
-                    naimur@example.com
+                  <a href="mailto:naimurislam707@gmail.com" className="text-muted-foreground hover:text-primary">
+                    naimurislam707@gmail.com
                   </a>
                 </div>
               </div>
@@ -87,7 +115,7 @@ const Contact = () => {
                 <div>
                   <p className="font-medium">Location</p>
                   <p className="text-muted-foreground">
-                    City, Country
+                    Dhaka, Bangladesh
                   </p>
                 </div>
               </div>
@@ -131,7 +159,7 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <label htmlFor="subject" className="text-sm font-medium">
                     Subject
                   </label>
@@ -143,7 +171,7 @@ const Contact = () => {
                     placeholder="What's this about?"
                     required
                   />
-                </div>
+                </div> */}
                 
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium">

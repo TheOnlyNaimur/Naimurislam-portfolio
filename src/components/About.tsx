@@ -26,11 +26,11 @@ const About = () => {
                 ahead in the fast-paced world of web development.
               </p>
               <p>
-                When I'm not coding, you can find me exploring new hiking trails,
-                reading tech blogs, or experimenting with new recipes in the kitchen.
-                I believe in maintaining a healthy work-life balance to fuel creativity
-                and productivity.
-              </p>
+                      When I'm not coding, you can find me reading science fiction novels,
+                      watching documentaries, or brainstorming ideas for personal projects.
+                      I believe in staying curious and continuously expanding my horizons
+                      to foster creativity and innovation.
+                      </p>
             </div>
           </div>
           
@@ -53,14 +53,18 @@ const About = () => {
                   <CardContent className="pt-6">
                     <div className="space-y-6">
                       <div>
-                        <h3 className="font-semibold text-xl">Master of Computer Science</h3>
-                        <p className="text-muted-foreground">University of Technology • 2019-2021</p>
-                        <p className="mt-2">Specialized in Software Engineering with focus on distributed systems and cloud computing.</p>
-                      </div>
-                      <div>
                         <h3 className="font-semibold text-xl">Bachelor of Science in Computer Science</h3>
+                        <p className="text-muted-foreground">Brac University • 2021-Current</p>
+                        <p className="mt-2">Specialized in Web Development and Software Engineering with focus on distributed and decentralized systems .</p>
+                      </div>
+                      <div> 
+
+                        {/* Will Activate when Needed */}
+
+
+                        {/* <h3 className="font-semibold text-xl">Bachelor of Science in Computer Science</h3>
                         <p className="text-muted-foreground">State University • 2015-2019</p>
-                        <p className="mt-2">Graduated with honors. Completed thesis on web application optimization techniques.</p>
+                        <p className="mt-2">Graduated with honors. Completed thesis on web application optimization techniques.</p> */}
                       </div>
                     </div>
                   </CardContent>
@@ -72,12 +76,12 @@ const About = () => {
                   <CardContent className="pt-6">
                     <div className="space-y-6">
                       <div>
-                        <h3 className="font-semibold text-xl">Senior Full Stack Developer</h3>
-                        <p className="text-muted-foreground">Tech Innovations Inc. • 2022-Present</p>
-                        <p className="mt-2">Lead development of enterprise applications using React, Node.js, and cloud technologies.</p>
+                        <h3 className="font-semibold text-xl">Human Resourse Manager & Development team</h3>
+                        <p className="text-muted-foreground">NonAcademy • 2023</p>
+                        <p className="mt-2">Collaborated with the development team to streamline internal workflows and led HR initiatives focused on recruitment, onboarding, and team engagement at Nonacademy in 2023.</p>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-xl">Full Stack Developer</h3>
+                      {/* <div>
+                        <h3 className="font-semibold text-xl">Development Team</h3>
                         <p className="text-muted-foreground">WebSolutions Co. • 2019-2022</p>
                         <p className="mt-2">Developed and maintained client websites and web applications. Improved performance by 40%.</p>
                       </div>
@@ -85,7 +89,7 @@ const About = () => {
                         <h3 className="font-semibold text-xl">Web Developer Intern</h3>
                         <p className="text-muted-foreground">Digital Creations • 2018-2019</p>
                         <p className="mt-2">Assisted in developing responsive websites and learned industry best practices.</p>
-                      </div>
+                      </div> */}
                     </div>
                   </CardContent>
                 </Card>
@@ -96,21 +100,21 @@ const About = () => {
                   <CardContent className="pt-6">
                     <div className="space-y-6">
                       <div>
-                        <h3 className="font-semibold text-xl">Best Web Development Project Award</h3>
-                        <p className="text-muted-foreground">National Tech Conference • 2023</p>
+                        <h3 className="font-semibold text-xl">Best Volunteer Award</h3>
+                        <p className="text-muted-foreground">Udokta101• Brac University • 2023</p>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-xl">Certified AWS Solutions Architect</h3>
-                        <p className="text-muted-foreground">Amazon Web Services • 2022</p>
+                        <h3 className="font-semibold text-xl">Certified Data Analyst Accociate</h3>
+                        <p className="text-muted-foreground">DataCamp • 2025</p>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-xl">Open Source Contributor Award</h3>
-                        <p className="text-muted-foreground">GitHub Community • 2021</p>
+                        <h3 className="font-semibold text-xl">Divisional Art Champion</h3>
+                        <p className="text-muted-foreground">Kaler Chobi • 2012</p>
                       </div>
-                      <div>
+                      {/* <div>
                         <h3 className="font-semibold text-xl">Hackathon Winner</h3>
                         <p className="text-muted-foreground">TechFest • 2020</p>
-                      </div>
+                      </div> */}
                     </div>
                   </CardContent>
                 </Card>

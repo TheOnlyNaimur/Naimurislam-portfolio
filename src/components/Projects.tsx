@@ -54,7 +54,7 @@ const Projects = () => {
     <section id="projects" className="py-20">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Featured Projects</h2>
+          <h2 className="text-3xl font-bold" >Featured Projects</h2>
           <Link to="/projects">
             <Button variant="outline" className="gap-2">
               View All Projects <ArrowRight size={16} />
