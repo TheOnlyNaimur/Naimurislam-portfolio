@@ -45,7 +45,7 @@ const Hero = () => {
             <div className="relative">
               <div className="w-73 h-73 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-lg animate-float">
                 <img 
-                  src="../../public/Naimur img.png" 
+                  src="../../public/Naimur_img.png" 
                   alt="Naimur Islam" 
                   className="w-full h-full object-cover"
                   style={{ filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 1))" }}
