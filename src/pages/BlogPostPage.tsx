@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Layout from "@/components/Layout";
 import { getBlogPostById } from "@/services/blogService";
 import { Badge } from "@/components/ui/badge";
@@ -56,33 +58,13 @@ const BlogPostPage = () => {
                 </div>
               </div>
 
-              <div className="leading-relaxed">
+              <div className="leading-relaxed prose prose-sm dark:prose-invert max-w-none prose-p:mb-4 prose-h2:mt-8 prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-li:mb-2 prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:rounded prose-pre:bg-muted prose-pre:p-4 prose-pre:rounded prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic">
                 {post.content ? (
-                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {post.content}
+                  </ReactMarkdown>
                 ) : (
-                  <>
-                    <p className="mb-4">{post.description}</p>
-                    {/* <p className="mb-4">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros
-                      elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
-                      commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet.
-                    </p>
-                    <p className="mb-4">
-                      Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare,
-                      eros dolor interdum nulla, ut commodo diam libero vitae erat. 
-                      Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet.
-                    </p>
-                    <h2 className="text-2xl font-bold mt-8 mb-4">Heading 2</h2>
-                    <p className="mb-4">
-                      Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare,
-                      eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo
-                      cursus id rutrum lorem imperdiet.
-                    </p>
-                    <p>
-                      Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare,
-                      eros dolor interdum nulla, ut commodo diam libero vitae erat.
-                    </p> */}
-                  </>
+                  <p className="mb-4">{post.description}</p>
                 )}
               </div>
             </article>

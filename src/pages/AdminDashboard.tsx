@@ -421,6 +421,10 @@ const AdminDashboard = () => {
                   }
                   rows={5}
                 />
+                <p className="text-xs text-muted-foreground">
+                  💡 Use <strong>Markdown</strong>: # Heading, **bold**,
+                  *italic*, - list, [link](url), ```code```
+                </p>
                 <Button type="submit" disabled={savingBlog}>
                   {savingBlog ? "Saving..." : "Save Blog"}
                 </Button>
