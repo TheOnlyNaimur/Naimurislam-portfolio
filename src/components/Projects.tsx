@@ -151,7 +151,7 @@ const Projects = () => {
                     className="md:basis-1/2 lg:basis-1/3"
                   >
                     <Card className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow">
-                      <div className="h-56 overflow-hidden">
+                      <div className="w-full aspect-video overflow-hidden bg-muted">
                         <img
                           src={project.image}
                           alt={project.title}

@@ -48,7 +48,7 @@ const BlogPostPage = () => {
                   </div>
                 </div>
                 <h1 className="text-4xl font-bold mb-6">{post.title}</h1>
-                <div className="rounded-lg overflow-hidden mb-8 h-[400px]">
+                <div className="rounded-lg overflow-hidden mb-8 w-full aspect-video bg-muted">
                   <img
                     src={post.image}
                     alt={post.title}

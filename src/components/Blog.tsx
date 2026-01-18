@@ -93,7 +93,7 @@ const Blog = () => {
                 key={post.id}
                 className="overflow-hidden hover:shadow-lg transition-shadow group"
               >
-                <div className="h-48 overflow-hidden">
+                <div className="w-full aspect-video overflow-hidden bg-muted">
                   <img
                     src={post.image}
                     alt={post.title}
