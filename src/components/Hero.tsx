@@ -25,7 +25,7 @@ const Hero = () => {
               </h1>
             </div>
             <h2 className="text-2xl md:text-3xl font-semibold text-muted-foreground">
-              Full Stack Developer
+              Software Engineer & Developer
             </h2>
             <p className="text-lg text-muted-foreground">
               I craft elegant, user-friendly web applications with modern
@@ -47,7 +47,7 @@ const Hero = () => {
             <div className="relative">
               <div className="w-73 h-73 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-lg animate-float">
                 <img
-                  src="/photo.png"
+                  src="/photo2.png"
                   alt="Naimur Islam - Full Stack Developer"
                   className="w-full h-full object-cover"
                   loading="lazy"

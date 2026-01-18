@@ -101,7 +101,7 @@ const Skills = () => {
       darkColor: "dark:bg-red-900",
     },
     {
-      name: "Andriod",
+      name: "Android",
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg",
       lightColor: "bg-yellow-100",
       darkColor: "dark:bg-yellow-900",
@@ -111,6 +111,24 @@ const Skills = () => {
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
       lightColor: "bg-blue-100",
       darkColor: "dark:bg-blue-900",
+    },
+    {
+      name: "Blockchain",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg",
+      lightColor: "bg-gray-100",
+      darkColor: "dark:bg-gray-800",
+    },
+    {
+      name: "Supabase",
+      icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/supabase.svg",
+      lightColor: "bg-emerald-100",
+      darkColor: "dark:bg-emerald-900",
+    },
+    {
+      name: "n8n Automation",
+      icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/n8n.svg",
+      lightColor: "bg-pink-100",
+      darkColor: "dark:bg-pink-900",
     },
   ];
 

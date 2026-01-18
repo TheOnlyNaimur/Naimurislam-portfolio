@@ -52,7 +52,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Contact Info</h3>
             <p className="mb-2">Email: naimurislam707@gmail.com</p>
-            <p className="mb-2">Phone: </p>
+            <p className="mb-2">Phone:+8801712188292 </p>
             <p>Location: Dhaka, Bangladesh</p>
           </div>
         </div>

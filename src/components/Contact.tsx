@@ -142,10 +142,10 @@ const Contact = () => {
                 <div>
                   <p className="font-medium">Phone</p>
                   <a
-                    href="tel:+1234567890"
+                    href="https://wa.me/8801712188292"
                     className="text-muted-foreground hover:text-primary"
                   >
-                    +123 456 7890
+                    +8801712188292
                   </a>
                 </div>
               </div>

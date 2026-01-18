@@ -45,7 +45,7 @@ const ResumePage = () => {
           <div className="relative">
             <div className="h-28 w-28 rounded-full overflow-hidden border-4 border-primary/30 shadow-lg">
               <img
-                src="/photo.png"
+                src="/photo2.png"
                 alt="Naimur Islam portrait"
                 className="h-full w-full object-cover"
                 loading="lazy"

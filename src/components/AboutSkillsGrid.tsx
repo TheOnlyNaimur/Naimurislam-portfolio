@@ -1,5 +1,20 @@
 const skills = [
   {
+    name: "HTML5",
+    level: "Advanced",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  },
+  {
+    name: "CSS3",
+    level: "Advanced",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  },
+  {
+    name: "JavaScript",
+    level: "Advanced",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  },
+  {
     name: "React",
     level: "Advanced",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
@@ -18,6 +33,11 @@ const skills = [
     name: "Next.js",
     level: "Proficient",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+  },
+  {
+    name: "Express.js",
+    level: "Proficient",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
   },
   {
     name: "MongoDB",
@@ -45,6 +65,11 @@ const skills = [
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
   },
   {
+    name: "MySQL",
+    level: "Proficient",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  },
+  {
     name: "Python",
     level: "Proficient",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
@@ -58,6 +83,26 @@ const skills = [
     name: "Git",
     level: "Advanced",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  },
+  {
+    name: "Android Studio",
+    level: "Intermediate",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg",
+  },
+  {
+    name: "Blockchain (Solidity)",
+    level: "Proficient",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg",
+  },
+  {
+    name: "Supabase",
+    level: "Proficient",
+    icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/supabase.svg",
+  },
+  {
+    name: "n8n Automation",
+    level: "Intermediate",
+    icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/n8n.svg",
   },
 ];
 
