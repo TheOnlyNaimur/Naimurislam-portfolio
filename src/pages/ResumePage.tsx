@@ -59,7 +59,7 @@ const ResumePage = () => {
             </p>
             <h1 className="text-4xl font-bold">Naimur Islam</h1>
             <p className="text-lg text-muted-foreground">
-              Full Stack Developer | Building thoughtful web and blockchain
+              Software Engineer & Developer | Building thoughtful web and blockchain
               experiences
             </p>
           </div>
