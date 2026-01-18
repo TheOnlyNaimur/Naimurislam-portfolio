@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ModeToggle } from "./ModeToggle";
@@ -25,6 +24,8 @@ const Navbar = () => {
           ? "bg-background/90 backdrop-blur shadow-md py-2"
           : "bg-transparent py-4"
       }`}
+      role="navigation"
+      aria-label="Main navigation"
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
@@ -37,23 +38,41 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/" className="nav-link font-medium text-foreground hover:text-primary transition-colors">
+          <Link
+            to="/"
+            className="nav-link font-medium text-foreground hover:text-primary transition-colors"
+          >
             Home
           </Link>
-          <Link to="/about" className="nav-link font-medium text-foreground hover:text-primary transition-colors">
+          <Link
+            to="/about"
+            className="nav-link font-medium text-foreground hover:text-primary transition-colors"
+          >
             About
           </Link>
-          <Link to="/projects" className="nav-link font-medium text-foreground hover:text-primary transition-colors">
+          <Link
+            to="/projects"
+            className="nav-link font-medium text-foreground hover:text-primary transition-colors"
+          >
             Projects
           </Link>
-          <Link to="/blog" className="nav-link font-medium text-foreground hover:text-primary transition-colors">
+          <Link
+            to="/blog"
+            className="nav-link font-medium text-foreground hover:text-primary transition-colors"
+          >
             Blog
           </Link>
-          <Link to="/resume" className="nav-link font-medium text-foreground hover:text-primary transition-colors flex items-center">
+          <Link
+            to="/resume"
+            className="nav-link font-medium text-foreground hover:text-primary transition-colors flex items-center"
+          >
             <FileText size={16} className="mr-1" />
-            Resume
+            CV
           </Link>
-          <Link to="/contact" className="nav-link font-medium text-foreground hover:text-primary transition-colors">
+          <Link
+            to="/contact"
+            className="nav-link font-medium text-foreground hover:text-primary transition-colors"
+          >
             Contact
           </Link>
           <ModeToggle />

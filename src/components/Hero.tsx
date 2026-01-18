@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 
@@ -16,7 +15,9 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="w-full md:w-1/2 space-y-6">
             <div>
-              <span className="text-2xl md:text-3xl font-medium text-muted-foreground">Hi, I'm</span>
+              <span className="text-2xl md:text-3xl font-medium text-muted-foreground">
+                Hi, I'm
+              </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
                 <span className="bg-gradient-to-r from-primary to-[#FF0048] bg-clip-text text-transparent">
                   Naimur Islam
@@ -27,9 +28,10 @@ const Hero = () => {
               Full Stack Developer
             </h2>
             <p className="text-lg text-muted-foreground">
-              I craft elegant, user-friendly web applications with modern technologies.
-              Passionate about creating digital experiences that combine functionality with 
-              beautiful design. Always exploring new tools and frameworks to expand my skillset.
+              I craft elegant, user-friendly web applications with modern
+              technologies. Passionate about creating digital experiences that
+              combine functionality with beautiful design. Always exploring new
+              tools and frameworks to expand my skillset.
             </p>
             <div className="flex items-center gap-4">
               <Button onClick={scrollToAbout} size="lg" className="gap-2">
@@ -40,16 +42,16 @@ const Hero = () => {
               </Button>
             </div>
           </div>
-          
+
           <div className="w-full md:w-1/2 flex justify-center">
             <div className="relative">
               <div className="w-73 h-73 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-lg animate-float">
-                <img 
-                  src="../../public/Naimur_img.png" 
-                  alt="Naimur Islam" 
+                <img
+                  src="/Naimur_img.png"
+                  alt="Naimur Islam - Full Stack Developer"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                   style={{ filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 1))" }}
-                
                 />
               </div>
               <div className="absolute -z-10 w-72 h-72 md:w-80 md:h-80 rounded-full bg-primary/20 blur-2xl"></div>

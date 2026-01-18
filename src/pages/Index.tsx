@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -10,12 +9,14 @@ import Contact from "@/components/Contact";
 const Index = () => {
   return (
     <Layout>
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Blog />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Blog />
+        <Contact />
+      </main>
     </Layout>
   );
 };

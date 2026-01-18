@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Layout from "@/components/Layout";
@@ -8,13 +7,17 @@ import { Calendar } from "lucide-react";
 
 const BlogPostPage = () => {
   const { id } = useParams<{ id: string }>();
-  
-  const { data: post, isLoading, error } = useQuery({
-    queryKey: ['blogPost', id],
+
+  const {
+    data: post,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["blogPost", id],
     queryFn: () => getBlogPostById(Number(id)),
     enabled: !!id,
   });
-  
+
   return (
     <Layout>
       <div className="pt-24 pb-20">
@@ -25,8 +28,12 @@ const BlogPostPage = () => {
             </div>
           ) : error ? (
             <div className="text-center py-10 text-red-500">
-              <h2 className="text-2xl font-bold mb-4">Error Loading Blog Post</h2>
-              <p>Sorry, we couldn't load this blog post. Please try again later.</p>
+              <h2 className="text-2xl font-bold mb-4">
+                Error Loading Blog Post
+              </h2>
+              <p>
+                Sorry, we couldn't load this blog post. Please try again later.
+              </p>
             </div>
           ) : post ? (
             <article className="prose prose-lg dark:prose-invert max-w-none">
@@ -40,14 +47,15 @@ const BlogPostPage = () => {
                 </div>
                 <h1 className="text-4xl font-bold mb-6">{post.title}</h1>
                 <div className="rounded-lg overflow-hidden mb-8 h-[400px]">
-                  <img 
-                    src={post.image} 
-                    alt={post.title} 
+                  <img
+                    src={post.image}
+                    alt={post.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>
-              
+
               <div className="leading-relaxed">
                 {post.content ? (
                   <div dangerouslySetInnerHTML={{ __html: post.content }} />
