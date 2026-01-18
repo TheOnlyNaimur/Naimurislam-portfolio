@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 const ResumePage = () => {
   const [isDownloading, setIsDownloading] = useState(false);
-  const resumeUrl = "/resume.pdf"; // Place resume.pdf in public/
+  const resumeUrl = "../../public/resume.pdf.pdf"; // Place cv.pdf in public/
 
   const handleDownload = async () => {
     setIsDownloading(true);
@@ -45,7 +45,7 @@ const ResumePage = () => {
           <div className="relative">
             <div className="h-28 w-28 rounded-full overflow-hidden border-4 border-primary/30 shadow-lg">
               <img
-                src="/Naimur_img.png"
+                src="/photo.png"
                 alt="Naimur Islam portrait"
                 className="h-full w-full object-cover"
                 loading="lazy"
