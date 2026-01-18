@@ -1,46 +1,83 @@
-import { supabase } from '@/integrations/supabase/client';
-import { BlogPost } from '@/lib/supabase';
+import { supabase } from "@/integrations/supabase/client";
+import { BlogPost } from "@/lib/supabase";
 
 // Mock data to use as fallback if queries fail
 const mockBlogPosts: BlogPost[] = [
   {
     id: 1,
     title: "Getting Started with React",
-    description: "Learn the basics of React and how to build your first component",
+    description:
+      "Learn the basics of React and how to build your first component",
     date: "May 1, 2025",
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000",
+    image:
+      "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000",
     category: "React",
-    created_at: "2025-05-01T10:00:00Z"
+    created_at: "2025-05-01T10:00:00Z",
   },
   {
     id: 2,
     title: "Mastering TypeScript",
-    description: "Take your TypeScript skills to the next level with advanced types",
+    description:
+      "Take your TypeScript skills to the next level with advanced types",
     date: "April 15, 2025",
-    image: "https://images.unsplash.com/photo-1629904853716-f0bc54eea481?q=80&w=1000",
+    image:
+      "https://images.unsplash.com/photo-1629904853716-f0bc54eea481?q=80&w=1000",
     category: "TypeScript",
-    created_at: "2025-04-15T10:00:00Z"
-  }
+    created_at: "2025-04-15T10:00:00Z",
+  },
 ];
 
-export async function getBlogPosts(category: string | null = null): Promise<BlogPost[]> {
+export interface NewBlogPayload {
+  title: string;
+  description: string;
+  image: string;
+  category: string;
+  content?: string;
+  date?: string;
+}
+
+export async function createBlogPost(payload: NewBlogPayload) {
   try {
-    let query = supabase.from('blog_posts').select('*');
-    
-    if (category && category !== 'All') {
-      query = query.eq('category', category);
-    }
-    
-    const { data, error } = await query.order('created_at', { ascending: false });
-    
+    const { error } = await supabase.from("blog_posts").insert({
+      title: payload.title,
+      description: payload.description,
+      image: payload.image,
+      category: payload.category,
+      content: payload.content || null,
+      date: payload.date || new Date().toISOString(),
+    });
+
     if (error) {
-      console.error('Error fetching blog posts:', error);
+      throw error;
+    }
+  } catch (err) {
+    console.error("Error in createBlogPost", err);
+    throw err;
+  }
+}
+
+export async function getBlogPosts(
+  category: string | null = null,
+): Promise<BlogPost[]> {
+  try {
+    let query = supabase.from("blog_posts").select("*");
+
+    if (category && category !== "All") {
+      query = query.eq("category", category);
+    }
+
+    const { data, error } = await query.order("created_at", {
+      ascending: false,
+    });
+
+    if (error) {
+      console.error("Error fetching blog posts:", error);
       return mockBlogPosts;
     }
-    
+
     return data as BlogPost[];
   } catch (err) {
-    console.error('Error in getBlogPosts:', err);
+    console.error("Error in getBlogPosts:", err);
     return mockBlogPosts;
   }
 }
@@ -48,19 +85,19 @@ export async function getBlogPosts(category: string | null = null): Promise<Blog
 export async function getFeaturedBlogPosts(limit = 4): Promise<BlogPost[]> {
   try {
     const { data, error } = await supabase
-      .from('blog_posts')
-      .select('*')
-      .order('created_at', { ascending: false })
+      .from("blog_posts")
+      .select("*")
+      .order("created_at", { ascending: false })
       .limit(limit);
-    
+
     if (error) {
-      console.error('Error fetching featured blog posts:', error);
+      console.error("Error fetching featured blog posts:", error);
       return mockBlogPosts.slice(0, limit);
     }
-    
+
     return data as BlogPost[];
   } catch (err) {
-    console.error('Error in getFeaturedBlogPosts:', err);
+    console.error("Error in getFeaturedBlogPosts:", err);
     return mockBlogPosts.slice(0, limit);
   }
 }
@@ -68,44 +105,44 @@ export async function getFeaturedBlogPosts(limit = 4): Promise<BlogPost[]> {
 export async function getBlogCategories(): Promise<string[]> {
   try {
     const { data, error } = await supabase
-      .from('blog_posts')
-      .select('category');
-    
+      .from("blog_posts")
+      .select("category");
+
     if (error) {
-      console.error('Error fetching blog categories:', error);
-      return ['All', 'React', 'TypeScript'];
+      console.error("Error fetching blog categories:", error);
+      return ["All", "React", "TypeScript"];
     }
-    
+
     // Extract unique categories and ensure they are strings
-    const categories = data.map(item => item.category);
+    const categories = data.map((item) => item.category);
     const uniqueCategories = Array.from(new Set<string>(categories));
-    return ['All', ...uniqueCategories];
+    return ["All", ...uniqueCategories];
   } catch (err) {
-    console.error('Error in getBlogCategories:', err);
-    return ['All', 'React', 'TypeScript'];
+    console.error("Error in getBlogCategories:", err);
+    return ["All", "React", "TypeScript"];
   }
 }
 
 export async function getBlogPostById(id: number): Promise<BlogPost | null> {
   try {
     const { data, error } = await supabase
-      .from('blog_posts')
-      .select('*')
-      .eq('id', id)
+      .from("blog_posts")
+      .select("*")
+      .eq("id", id)
       .single();
-    
+
     if (error) {
-      console.error('Error fetching blog post by ID:', error);
+      console.error("Error fetching blog post by ID:", error);
       // Return the mock post with matching ID if there's an error
-      const mockPost = mockBlogPosts.find(post => post.id === id);
+      const mockPost = mockBlogPosts.find((post) => post.id === id);
       return mockPost || null;
     }
-    
+
     return data;
   } catch (err) {
-    console.error('Error in getBlogPostById:', err);
+    console.error("Error in getBlogPostById:", err);
     // Return the mock post with matching ID if there's an exception
-    const mockPost = mockBlogPosts.find(post => post.id === id);
+    const mockPost = mockBlogPosts.find((post) => post.id === id);
     return mockPost || null;
   }
 }
