@@ -70,15 +70,8 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="relative mb-8">
+        <div className="mb-8">
           <h2 className="text-3xl font-bold text-center">Featured Projects</h2>
-          <div className="absolute right-0 top-0">
-            <Link to="/projects">
-              <Button variant="outline" className="gap-2">
-                View All Projects <ArrowRight size={16} />
-              </Button>
-            </Link>
-          </div>
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 mb-10">
@@ -160,8 +153,26 @@ const Projects = () => {
                         />
                       </div>
                       <CardHeader>
-                        <div className="flex justify-between items-center mb-2">
-                          <Badge>{project.category}</Badge>
+                        <div className="flex flex-wrap gap-2 items-center mb-3">
+                          <Badge className="bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100">
+                            {project.category}
+                          </Badge>
+                          {project.technologies.map((tech, index) => {
+                            const colors = [
+                              "bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-100",
+                              "bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100",
+                              "bg-pink-100 dark:bg-pink-900 text-pink-900 dark:text-pink-100",
+                              "bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100",
+                              "bg-red-100 dark:bg-red-900 text-red-900 dark:text-red-100",
+                              "bg-indigo-100 dark:bg-indigo-900 text-indigo-900 dark:text-indigo-100",
+                            ];
+                            const colorClass = colors[index % colors.length];
+                            return (
+                              <Badge key={index} className={colorClass}>
+                                {tech}
+                              </Badge>
+                            );
+                          })}
                         </div>
                         <CardTitle>{project.title}</CardTitle>
                       </CardHeader>
@@ -169,13 +180,6 @@ const Projects = () => {
                         <CardDescription className="mb-4">
                           {project.description}
                         </CardDescription>
-                        <div className="flex flex-wrap gap-2">
-                          {project.technologies.map((tech, index) => (
-                            <Badge key={index} variant="outline">
-                              {tech}
-                            </Badge>
-                          ))}
-                        </div>
                       </CardContent>
                       <CardFooter className="flex justify-between">
                         <Button variant="outline" size="sm" asChild>
@@ -209,12 +213,12 @@ const Projects = () => {
           </>
         )}
 
-        <div className="text-center mt-10">
-          <Link to="/projects">
-            <Button className="gap-2">
+        <div className="text-center mt-8">
+          <Button variant="outline" asChild size="lg">
+            <Link to="/projects" className="flex items-center gap-2">
               View All Projects <ArrowRight size={16} />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

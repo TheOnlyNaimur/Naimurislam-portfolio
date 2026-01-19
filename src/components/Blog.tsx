@@ -15,6 +15,13 @@ import {
   getBlogCategories,
 } from "@/services/blogService";
 import { useQuery } from "@tanstack/react-query";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Blog = () => {
   const [filter, setFilter] = useState<string | null>(null);
@@ -46,15 +53,8 @@ const Blog = () => {
   return (
     <section id="blog" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
-        <div className="relative mb-8">
+        <div className="mb-8">
           <h2 className="text-3xl font-bold text-center">Latest Articles</h2>
-          <div className="absolute right-0 top-0">
-            <Button variant="outline" asChild>
-              <Link to="/blog" className="flex items-center gap-2">
-                View All <ArrowRight size={16} />
-              </Link>
-            </Button>
-          </div>
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 mb-10">
@@ -87,48 +87,62 @@ const Blog = () => {
             No blog posts found. Please add some posts in the database.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredPosts.map((post) => (
-              <Card
-                key={post.id}
-                className="overflow-hidden hover:shadow-lg transition-shadow group"
-              >
-                <div className="w-full aspect-video overflow-hidden bg-muted">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <CardHeader className="p-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
-                      {post.category}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {post.date}
-                    </span>
-                  </div>
-                  <CardTitle className="text-lg">{post.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="p-4 pt-0">
-                  <CardDescription className="line-clamp-2">
-                    {post.description}
-                  </CardDescription>
-                </CardContent>
-                <CardFooter className="p-4 pt-0">
-                  <Link
-                    to={`/blog/${post.id}`}
-                    className="text-primary hover:underline text-sm font-medium flex items-center gap-1"
-                  >
-                    Read More <ArrowRight size={14} />
-                  </Link>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
+          <Carousel className="w-full px-12">
+            <CarouselContent>
+              {filteredPosts.map((post) => (
+                <CarouselItem
+                  key={post.id}
+                  className="md:basis-1/2 lg:basis-1/3"
+                >
+                  <Card className="overflow-hidden hover:shadow-lg transition-shadow group h-full">
+                    <div className="w-full aspect-video overflow-hidden bg-muted">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    <CardHeader className="p-4">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                          {post.category}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {post.date}
+                        </span>
+                      </div>
+                      <CardTitle className="text-lg">{post.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4 pt-0">
+                      <CardDescription className="line-clamp-2">
+                        {post.description}
+                      </CardDescription>
+                    </CardContent>
+                    <CardFooter className="p-4 pt-0">
+                      <Link
+                        to={`/blog/${post.id}`}
+                        className="text-primary hover:underline text-sm font-medium flex items-center gap-1"
+                      >
+                        Read More <ArrowRight size={14} />
+                      </Link>
+                    </CardFooter>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         )}
+
+        <div className="text-center mt-8">
+          <Button variant="outline" asChild size="lg">
+            <Link to="/blog" className="flex items-center gap-2">
+              View All Articles <ArrowRight size={16} />
+            </Link>
+          </Button>
+        </div>
       </div>
     </section>
   );

@@ -130,6 +130,8 @@ export async function getProjects(
       return mockProjects;
     }
 
+    console.log("Raw projects data:", projectsData);
+
     // Then fetch project-technologies relationships
     const { data: relationshipsData, error: relationshipsError } =
       await supabase
@@ -141,7 +143,6 @@ export async function getProjects(
         "Error fetching project-technologies relationships:",
         relationshipsError,
       );
-      return mockProjects;
     }
 
     // Finally fetch all technologies
@@ -151,23 +152,34 @@ export async function getProjects(
 
     if (technologiesError) {
       console.error("Error fetching technologies:", technologiesError);
-      return mockProjects;
     }
 
     // Build projects with their technologies
     const projects = projectsData.map((project) => {
-      // Find technology relationships for this project
-      const techRelationships = relationshipsData.filter(
-        (rel) => rel.project_id === project.id,
-      );
+      let technologies: string[] = [];
 
-      // Get technology names from relationships
-      const technologies = techRelationships
-        .map((rel) => {
-          const tech = technologiesData.find((t) => t.id === rel.technology_id);
-          return tech ? tech.name : "";
-        })
-        .filter(Boolean);
+      // Check if project has a technologies field (text column)
+      if (project.technologies && typeof project.technologies === "string") {
+        technologies = project.technologies
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean);
+      } else if (relationshipsData && technologiesData) {
+        // Find technology relationships for this project
+        const techRelationships = relationshipsData.filter(
+          (rel) => rel.project_id === project.id,
+        );
+
+        // Get technology names from relationships
+        technologies = techRelationships
+          .map((rel) => {
+            const tech = technologiesData.find(
+              (t) => t.id === rel.technology_id,
+            );
+            return tech ? tech.name : "";
+          })
+          .filter(Boolean);
+      }
 
       return {
         id: project.id,
@@ -182,6 +194,8 @@ export async function getProjects(
         technologies,
       };
     });
+
+    console.log("Processed projects with technologies:", projects);
 
     // If we have a tech filter, we need to filter in JS since it's an array field
     let filteredProjects = projects;
@@ -235,7 +249,6 @@ export async function getFeaturedProjects(): Promise<Project[]> {
         "Error fetching project-technologies relationships:",
         relationshipsError,
       );
-      return mockProjects.filter((p) => p.featured);
     }
 
     // Finally fetch all technologies
@@ -245,23 +258,34 @@ export async function getFeaturedProjects(): Promise<Project[]> {
 
     if (technologiesError) {
       console.error("Error fetching technologies:", technologiesError);
-      return mockProjects.filter((p) => p.featured);
     }
 
     // Build projects with their technologies
     const projects = projectsData.map((project) => {
-      // Find technology relationships for this project
-      const techRelationships = relationshipsData.filter(
-        (rel) => rel.project_id === project.id,
-      );
+      let technologies: string[] = [];
 
-      // Get technology names from relationships
-      const technologies = techRelationships
-        .map((rel) => {
-          const tech = technologiesData.find((t) => t.id === rel.technology_id);
-          return tech ? tech.name : "";
-        })
-        .filter(Boolean);
+      // Check if project has a technologies field (text column)
+      if (project.technologies && typeof project.technologies === "string") {
+        technologies = project.technologies
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean);
+      } else if (relationshipsData && technologiesData) {
+        // Find technology relationships for this project
+        const techRelationships = relationshipsData.filter(
+          (rel) => rel.project_id === project.id,
+        );
+
+        // Get technology names from relationships
+        technologies = techRelationships
+          .map((rel) => {
+            const tech = technologiesData.find(
+              (t) => t.id === rel.technology_id,
+            );
+            return tech ? tech.name : "";
+          })
+          .filter(Boolean);
+      }
 
       return {
         id: project.id,
@@ -306,16 +330,46 @@ export async function getProjectCategories(): Promise<string[]> {
 
 export async function getProjectTechnologies(): Promise<string[]> {
   try {
-    const { data, error } = await supabase.from("technologies").select("name");
+    // First try to get technologies from the junction table
+    const { data: techData, error: techError } = await supabase
+      .from("technologies")
+      .select("name");
 
-    if (error) {
-      console.error("Error fetching project technologies:", error);
+    let technologiesFromTable: string[] = [];
+    if (!techError && techData) {
+      technologiesFromTable = techData.map((item) => item.name);
+    }
+
+    // Also check if projects have a technologies text column
+    const { data: projectsData, error: projectsError } = await supabase
+      .from("projects")
+      .select("*");
+
+    let technologiesFromProjects: string[] = [];
+    if (!projectsError && projectsData) {
+      projectsData.forEach((project: any) => {
+        if (project.technologies && typeof project.technologies === "string") {
+          const techs = project.technologies
+            .split(",")
+            .map((t: string) => t.trim())
+            .filter(Boolean);
+          technologiesFromProjects.push(...techs);
+        }
+      });
+    }
+
+    // Combine and deduplicate
+    const allTechnologies = [
+      ...new Set([...technologiesFromTable, ...technologiesFromProjects]),
+    ];
+
+    if (allTechnologies.length === 0) {
+      console.log("No technologies found, using fallback");
       return ["All", "React", "TypeScript", "Next.js", "Tailwind CSS"];
     }
 
-    // Extract technologies, ensuring they are strings
-    const technologies = data.map((item) => item.name);
-    return ["All", ...technologies];
+    console.log("Found technologies:", allTechnologies);
+    return ["All", ...allTechnologies];
   } catch (err) {
     console.error("Error in getProjectTechnologies:", err);
     return ["All", "React", "TypeScript", "Next.js", "Tailwind CSS"];
