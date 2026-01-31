@@ -103,15 +103,15 @@ const ProjectsPage = () => {
 
   return (
     <Layout>
-      <div className="pt-24 pb-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-2">Projects</h1>
-          <p className="text-lg text-muted-foreground mb-8">
+      <div className="pt-20 sm:pt-24 pb-12 sm:pb-16 md:pb-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-2">Projects</h1>
+          <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8">
             A collection of my recent work and personal projects
           </p>
 
           {/* Search Box with Sort By */}
-          <div className="mb-8 flex justify-center items-end gap-3">
+          <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row justify-center items-stretch sm:items-end gap-3">
             <div className="relative w-full max-w-md">
               <Search
                 className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
@@ -143,10 +143,12 @@ const ProjectsPage = () => {
           </div>
 
           {/* Sort and Filter Controls */}
-          <div className="mb-10">
+          <div className="mb-8 sm:mb-10">
             {/* Category Filter */}
-            <div className="text-left mb-6">
-              <h3 className="font-medium mb-3">Filter by Category</h3>
+            <div className="text-left mb-4 sm:mb-6">
+              <h3 className="font-medium mb-2 sm:mb-3 text-sm sm:text-base">
+                Filter by Category
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {categoriesLoading ? (
                   <div>Loading categories...</div>
@@ -174,7 +176,9 @@ const ProjectsPage = () => {
 
             {/* Technology Filter */}
             <div className="text-left">
-              <h3 className="font-medium mb-3">Filter by Technology</h3>
+              <h3 className="font-medium mb-2 sm:mb-3 text-sm sm:text-base">
+                Filter by Technology
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {technologiesLoading ? (
                   <div>Loading technologies...</div>
@@ -204,7 +208,7 @@ const ProjectsPage = () => {
           {projectsLoading ? (
             <div className="w-full text-center py-12">Loading projects...</div>
           ) : filteredAndSortedProjects.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {filteredAndSortedProjects.map((project) => (
                 <Card
                   key={project.id}

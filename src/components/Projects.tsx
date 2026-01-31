@@ -68,13 +68,18 @@ const Projects = () => {
       : projects;
 
   return (
-    <section id="projects" className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-center">Featured Projects</h2>
+    <section
+      id="projects"
+      className="py-12 sm:py-16 md:py-20 overflow-hidden w-full"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center">
+            Featured Projects
+          </h2>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 mb-8 sm:mb-10">
           {categories.map((category) => (
             <Button
               key={category}
@@ -136,7 +141,7 @@ const Projects = () => {
                 </Button>
               </div>
             )}
-            <Carousel className="w-full px-12 mb-10">
+            <Carousel className="w-full px-4 sm:px-8 md:px-12 mb-8 sm:mb-10">
               <CarouselContent>
                 {filteredProjects.map((project) => (
                   <CarouselItem

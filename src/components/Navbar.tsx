@@ -22,17 +22,17 @@ const Navbar = () => {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-background/90 backdrop-blur shadow-md py-2"
-          : "bg-transparent py-4"
+          : "bg-transparent py-3 sm:py-4"
       }`}
       role="navigation"
       aria-label="Main navigation"
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-            <span className="text-3xl">N</span>aimur
-            <span className="text-3xl"> </span>
-            <span className="text-3xl">I</span>slam
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full flex items-center justify-between">
+        <Link to="/" className="flex items-center space-x-2 md:pl-8 lg:pl-14">
+          <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+            <span className="text-2xl sm:text-3xl">N</span>aimur
+            <span className="text-2xl sm:text-3xl"> </span>
+            <span className="text-2xl sm:text-3xl">I</span>slam
           </span>
         </Link>
 
@@ -92,7 +92,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-background shadow-lg py-4 px-6 flex flex-col space-y-4">
+        <div className="md:hidden absolute top-full left-0 w-full bg-background shadow-lg py-4 px-4 sm:px-6 flex flex-col space-y-3 sm:space-y-4">
           <Link
             to="/"
             className="font-medium"

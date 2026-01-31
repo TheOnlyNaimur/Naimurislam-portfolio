@@ -7,12 +7,17 @@ const About = () => {
   const [activeTab, setActiveTab] = useState("education");
 
   return (
-    <section id="about" className="pt-10 pb-20 bg-secondary/30">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">About Me</h2>
-        <div className="flex flex-col lg:flex-row gap-12">
+    <section
+      id="about"
+      className="pt-8 sm:pt-10 pb-12 sm:pb-16 md:pb-20 bg-secondary/30 overflow-hidden w-full"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">
+          About Me
+        </h2>
+        <div className="flex flex-col lg:flex-row gap-8 md:gap-10 lg:gap-12">
           <div className="w-full lg:w-1/2">
-            <div className="space-y-4 text-lg">
+            <div className="space-y-3 sm:space-y-4 text-base sm:text-lg">
               <p>
                 Hello! I'm Naimur Islam, a passionate full-stack developer with
                 expertise in building robust, scalable web applications. I have
@@ -39,24 +44,30 @@ const About = () => {
               onValueChange={setActiveTab}
               className="w-full"
             >
-              <TabsList className="grid w-full grid-cols-3 mb-8">
+              <TabsList className="grid w-full grid-cols-3 mb-6 sm:mb-8">
                 <TabsTrigger
                   value="education"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
                 >
-                  <BookOpen size={16} /> Education
+                  <BookOpen size={14} className="sm:w-4 sm:h-4" />{" "}
+                  <span className="hidden sm:inline">Education</span>
+                  <span className="sm:hidden">Edu</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="experience"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
                 >
-                  <Briefcase size={16} /> Experience
+                  <Briefcase size={14} className="sm:w-4 sm:h-4" />{" "}
+                  <span className="hidden sm:inline">Experience</span>
+                  <span className="sm:hidden">Exp</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="achievements"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
                 >
-                  <Trophy size={16} /> Achievements
+                  <Trophy size={14} className="sm:w-4 sm:h-4" />{" "}
+                  <span className="hidden sm:inline">Achievements</span>
+                  <span className="sm:hidden">Awards</span>
                 </TabsTrigger>
               </TabsList>
 

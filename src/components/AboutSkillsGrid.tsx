@@ -108,37 +108,39 @@ const skills = [
 
 const AboutSkillsGrid = () => {
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-10">
-          <p className="text-sm uppercase tracking-[0.2em] text-primary mb-2">
+    <section className="py-12 sm:py-14 md:py-16 overflow-hidden w-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
+        <div className="text-center mb-8 sm:mb-10">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-primary mb-2">
             Toolbox
           </p>
-          <h3 className="text-3xl font-bold">Skills Snapshot</h3>
-          <p className="text-muted-foreground mt-3">
+          <h3 className="text-2xl sm:text-3xl font-bold">Skills Snapshot</h3>
+          <p className="text-sm sm:text-base text-muted-foreground mt-2 sm:mt-3">
             A focused set of technologies I use to design, build, and ship
             products.
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {skills.map((skill) => (
             <div
               key={skill.name}
-              className="group flex items-center gap-4 rounded-xl border border-border/50 bg-card/60 p-4 shadow-sm transition hover:-translate-y-1 hover:border-primary/60 hover:shadow-lg"
+              className="group flex items-center gap-3 sm:gap-4 rounded-xl border border-border/50 bg-card/60 p-3 sm:p-4 shadow-sm transition hover:-translate-y-1 hover:border-primary/60 hover:shadow-lg"
             >
-              <div className="h-12 w-12 shrink-0 rounded-lg bg-muted/40 flex items-center justify-center overflow-hidden">
+              <div className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 rounded-lg bg-muted/40 flex items-center justify-center overflow-hidden">
                 <img
                   src={skill.icon}
                   alt={skill.name}
-                  className="h-8 w-8 object-contain"
+                  className="h-7 w-7 sm:h-8 sm:w-8 object-contain"
                   loading="lazy"
                 />
               </div>
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
-                  <h4 className="font-semibold">{skill.name}</h4>
-                  <span className="text-xs rounded-full bg-primary/10 text-primary px-2 py-1">
+                  <h4 className="font-semibold text-sm sm:text-base truncate">
+                    {skill.name}
+                  </h4>
+                  <span className="text-xs rounded-full bg-primary/10 text-primary px-2 py-1 whitespace-nowrap">
                     {skill.level}
                   </span>
                 </div>

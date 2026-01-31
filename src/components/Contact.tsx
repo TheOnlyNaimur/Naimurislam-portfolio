@@ -10,7 +10,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import {
+  Mail,
+  MessageCircle,
+  MapPin,
+  Send,
+  Linkedin,
+  Github,
+} from "lucide-react";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -107,58 +114,71 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-16">Say Hello</h2>
+    <section
+      id="contact"
+      className="py-12 sm:py-16 md:py-20 bg-secondary/30 overflow-hidden w-full"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 md:mb-16">
+          Say Hello
+        </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold">Get In Touch</h3>
-            <p className="text-lg text-muted-foreground">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+          <div className="space-y-6 sm:space-y-8">
+            <h3 className="text-xl sm:text-2xl font-semibold">Get In Touch</h3>
+            <p className="text-base sm:text-lg text-muted-foreground">
               Whether you have a question, want to start a project, or simply
               want to connect, feel free to reach out.
             </p>
 
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-primary/10 rounded-full text-primary">
-                  <Mail size={20} />
-                </div>
-                <div>
-                  <p className="font-medium">Email</p>
-                  <a
-                    href="mailto:naimurislam707@gmail.com"
-                    className="text-muted-foreground hover:text-primary"
-                  >
-                    naimurislam707@gmail.com
-                  </a>
-                </div>
-              </div>
+            <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
+              <a
+                href="mailto:naimurislam707@gmail.com"
+                className="p-4 bg-primary/10 rounded-full text-primary hover:bg-primary hover:text-background transition-colors"
+                title="Email"
+              >
+                <Mail size={24} />
+              </a>
 
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-primary/10 rounded-full text-primary">
-                  <Phone size={20} />
-                </div>
-                <div>
-                  <p className="font-medium">Phone</p>
-                  <a
-                    href="https://wa.me/8801712188292"
-                    className="text-muted-foreground hover:text-primary"
-                  >
-                    +8801712188292
-                  </a>
-                </div>
-              </div>
+              <a
+                href="https://wa.me/8801712188292"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 bg-primary/10 rounded-full text-primary hover:bg-primary hover:text-background transition-colors"
+                title="WhatsApp"
+              >
+                <MessageCircle size={24} />
+              </a>
 
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-primary/10 rounded-full text-primary">
-                  <MapPin size={20} />
-                </div>
-                <div>
-                  <p className="font-medium">Location</p>
-                  <p className="text-muted-foreground">Dhaka, Bangladesh</p>
-                </div>
-              </div>
+              <a
+                href="https://www.google.com/maps/place/Dhaka,+Bangladesh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 bg-primary/10 rounded-full text-primary hover:bg-primary hover:text-background transition-colors"
+                title="Location"
+              >
+                <MapPin size={24} />
+              </a>
+
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 bg-primary/10 rounded-full text-primary hover:bg-primary hover:text-background transition-colors"
+                title="LinkedIn"
+              >
+                <Linkedin size={24} />
+              </a>
+
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 bg-primary/10 rounded-full text-primary hover:bg-primary hover:text-background transition-colors"
+                title="GitHub"
+              >
+                <Github size={24} />
+              </a>
             </div>
           </div>
 
@@ -171,7 +191,7 @@ const Contact = () => {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">
                       Name

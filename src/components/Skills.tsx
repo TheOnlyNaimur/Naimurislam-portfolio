@@ -148,28 +148,33 @@ const Skills = () => {
   // const tripleSkillsRow2 = [...skillsRow2, ...skillsRow2, ...skillsRow2];
 
   return (
-    <section className="py-20 overflow-hidden" id="skills">
-      <div className="container mx-auto px-4 mb-10">
-        <h2 className="text-3xl font-bold text-center mb-16">My Skills</h2>
+    <section
+      className="py-12 sm:py-16 md:py-20 overflow-hidden w-full"
+      id="skills"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12 sm:mb-16">
+          My Skills
+        </h2>
       </div>
 
       {/* First row of skills - scrolling right to left */}
-      <div className="relative flex overflow-x-hidden">
-        <div className="flex space-x-8 py-4 animate-scroll">
+      <div className="relative flex overflow-x-hidden w-full">
+        <div className="flex space-x-4 sm:space-x-6 md:space-x-8 py-4 animate-scroll">
           {tripleSkillsRow1.map((skill, index) => (
             <div
               key={`${skill.name}-${index}`}
-              className={`flex flex-col items-center justify-center w-36 h-36 rounded-xl shadow-md ${skill.lightColor} ${skill.darkColor} skill-item transition-transform duration-300 p-4`}
+              className={`flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-xl shadow-md ${skill.lightColor} ${skill.darkColor} skill-item transition-transform duration-300 p-3 sm:p-4 flex-shrink-0`}
               role="article"
               aria-label={`${skill.name} skill`}
             >
               <img
                 src={skill.icon}
                 alt={skill.name}
-                className="w-16 h-16 mb-4"
+                className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-2 sm:mb-3 md:mb-4"
                 loading="lazy"
               />
-              <span className="font-medium text-center text-gray-800 dark:text-white">
+              <span className="font-medium text-center text-xs sm:text-sm md:text-base text-gray-800 dark:text-white">
                 {skill.name}
               </span>
             </div>

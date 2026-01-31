@@ -14,12 +14,10 @@ const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     const recordVisit = async () => {
       try {
-        await supabase
-          .from("page_visits" as any)
-          .insert({
-            path: location.pathname,
-            created_at: new Date().toISOString(),
-          });
+        await supabase.from("page_visits" as any).insert({
+          path: location.pathname,
+          created_at: new Date().toISOString(),
+        });
       } catch (error) {
         console.error(
           "Visit logging failed (ensure table & policy exist)",
@@ -32,9 +30,9 @@ const Layout = ({ children }: LayoutProps) => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col overflow-x-hidden">
       <Navbar />
-      <div className="flex-grow">{children}</div>
+      <div className="flex-grow overflow-x-hidden">{children}</div>
       <Footer />
     </div>
   );

@@ -40,10 +40,10 @@ const ResumePage = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="flex flex-col items-center text-center gap-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 md:py-16">
+        <div className="flex flex-col items-center text-center gap-3 sm:gap-4">
           <div className="relative">
-            <div className="h-28 w-28 rounded-full overflow-hidden border-4 border-primary/30 shadow-lg">
+            <div className="h-24 w-24 sm:h-28 sm:w-28 rounded-full overflow-hidden border-4 border-primary/30 shadow-lg">
               <img
                 src="/photo2.png"
                 alt="Naimur Islam portrait"
@@ -54,36 +54,45 @@ const ResumePage = () => {
           </div>
 
           <div className="space-y-1">
-            <p className="text-sm font-medium text-primary uppercase tracking-[0.35em]">
+            <p className="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.35em]">
               Curriculum Vitae
             </p>
-            <h1 className="text-4xl font-bold">Naimur Islam</h1>
-            <p className="text-lg text-muted-foreground">
-              Software Engineer & Developer | Building thoughtful web and blockchain
-              experiences
+            <h1 className="text-3xl sm:text-4xl font-bold">Naimur Islam</h1>
+            <p className="text-base sm:text-lg text-muted-foreground px-4">
+              Software Engineer & Developer | Building thoughtful web and
+              blockchain experiences
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1">
-              <MapPin size={16} /> Dhaka, Bangladesh
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-muted px-2.5 sm:px-3 py-1">
+              <MapPin size={14} className="sm:w-4 sm:h-4" /> Dhaka, Bangladesh
             </span>
             <a
               href="mailto:naimurislam707@gmail.com"
-              className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1 hover:text-primary transition-colors"
+              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-muted px-2.5 sm:px-3 py-1 hover:text-primary transition-colors"
             >
-              <Mail size={16} /> naimurislam707@gmail.com
+              <Mail size={14} className="sm:w-4 sm:h-4" />{" "}
+              <span className="hidden sm:inline">naimurislam707@gmail.com</span>
+              <span className="sm:hidden">Email</span>
             </a>
             <a
               href="tel:+8801712188292"
-              className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1 hover:text-primary transition-colors"
+              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-muted px-2.5 sm:px-3 py-1 hover:text-primary transition-colors"
             >
-              <Phone size={16} /> +8801712188292
+              <Phone size={14} className="sm:w-4 sm:h-4" />{" "}
+              <span className="hidden sm:inline">+8801712188292</span>
+              <span className="sm:hidden">Phone</span>
             </a>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button onClick={handleDownload} disabled={isDownloading} size="lg">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 w-full sm:w-auto">
+            <Button
+              onClick={handleDownload}
+              disabled={isDownloading}
+              size="lg"
+              className="w-full sm:w-auto"
+            >
               {isDownloading ? (
                 "Preparing..."
               ) : (
@@ -91,10 +100,15 @@ const ResumePage = () => {
               )}
               {isDownloading ? "Downloading" : "Download Resume"}
             </Button>
-            <Button variant="outline" size="lg" asChild>
+            <Button
+              variant="outline"
+              size="lg"
+              asChild
+              className="w-full sm:w-auto"
+            >
               <a
                 href="mailto:naimurislam707@gmail.com"
-                className="flex items-center"
+                className="flex items-center justify-center"
               >
                 Let&apos;s talk <ArrowRight className="ml-2" size={16} />
               </a>
