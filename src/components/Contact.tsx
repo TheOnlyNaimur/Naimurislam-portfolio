@@ -118,7 +118,7 @@ const Contact = () => {
       id="contact"
       className="py-12 sm:py-16 md:py-20 bg-secondary/30 overflow-hidden w-full"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 md:mb-16">
           Say Hello
         </h2>

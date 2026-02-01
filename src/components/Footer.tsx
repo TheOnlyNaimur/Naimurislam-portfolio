@@ -75,7 +75,7 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-gradient-to-br from-primary/90 to-[#FF0048]/90 text-primary-foreground overflow-hidden w-full">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 md:pt-12 pb-6 sm:pb-8 max-w-full relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 md:pt-12 pb-6 sm:pb-8 max-w-7xl relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10 md:mb-12">
           <div>
             <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">

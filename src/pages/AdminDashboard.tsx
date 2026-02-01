@@ -205,7 +205,7 @@ const AdminDashboard = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-10 space-y-8">
+      <div className="container mx-auto px-4 max-w-7xl py-10 space-y-8">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <p className="text-sm uppercase tracking-[0.25em] text-primary">

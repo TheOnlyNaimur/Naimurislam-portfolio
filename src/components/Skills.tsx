@@ -152,7 +152,7 @@ const Skills = () => {
       className="py-12 sm:py-16 md:py-20 overflow-hidden w-full"
       id="skills"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl mb-8 sm:mb-10">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12 sm:mb-16">
           My Skills
         </h2>

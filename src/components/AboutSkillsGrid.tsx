@@ -109,7 +109,7 @@ const skills = [
 const AboutSkillsGrid = () => {
   return (
     <section className="py-12 sm:py-14 md:py-16 overflow-hidden w-full">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center mb-8 sm:mb-10">
           <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-primary mb-2">
             Toolbox

@@ -55,7 +55,7 @@ const Blog = () => {
       id="blog"
       className="py-12 sm:py-16 md:py-20 bg-secondary/30 overflow-hidden w-full"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="mb-6 sm:mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-center">
             Latest Articles

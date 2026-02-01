@@ -40,7 +40,7 @@ const ResumePage = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 md:py-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12 sm:py-14 md:py-16">
         <div className="flex flex-col items-center text-center gap-3 sm:gap-4">
           <div className="relative">
             <div className="h-24 w-24 sm:h-28 sm:w-28 rounded-full overflow-hidden border-4 border-primary/30 shadow-lg">

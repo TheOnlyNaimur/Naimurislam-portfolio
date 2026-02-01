@@ -11,7 +11,7 @@ const About = () => {
       id="about"
       className="pt-8 sm:pt-10 pb-12 sm:pb-16 md:pb-20 bg-secondary/30 overflow-hidden w-full"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">
           About Me
         </h2>

@@ -11,9 +11,9 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center pt-16 sm:pt-20 md:pt-16 bg-gradient-to-b from-background to-background/95 overflow-hidden w-full">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 lg:gap-16">
-          <div className="w-full md:w-1/2 space-y-4 sm:space-y-6 text-center md:text-left md:pl-8 lg:pl-14">
+          <div className="w-full md:w-1/2 space-y-4 sm:space-y-6 text-center md:text-left">
             <div>
               <span className="text-xl sm:text-2xl md:text-3xl font-medium text-muted-foreground">
                 Hi, I'm
